@@ -7,9 +7,9 @@ using TMPro;       // この２行を追加する．
 public class player : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI Trap;
+    [SerializeField] private TextMeshProUGUI Savepoint;
     [SerializeField] private AudioSource contact_sound;
     [SerializeField] private AudioClip clip1;
-    Transform myTransform;    // transform情報を格納する変数 
     Vector3 initial_position;     // 物体の初期位置を格納する変数
     //Vector3 initial_rotate;
     List<string> trapQueue = new List<string>();
@@ -20,8 +20,7 @@ public class player : MonoBehaviour
     void Start()
     { 
         Application.targetFrameRate = 60;   // ← FPSを60に設定
-        myTransform = this.transform;  // 物体のtransform情報をリンクする
-        initial_position = myTransform.position;  // 初期位置を取り出す
+        initial_position = this.transform.position;  // 初期位置を取り出す
         //initial_rotate = new Vector3(0,2,0);
         velocity = 0.1f;
     } 
@@ -84,7 +83,12 @@ public class player : MonoBehaviour
         }
     }
     void OnCollisionEnter(Collision other)  // 衝突を判定する関数を呼ぶ 
-    { 
+    {
+        if(other.gameObject.name == "savepoint")
+        {
+            initial_position = this.transform.position;
+            Savepoint.text = ""; //未解決
+        }
         if (other.transform.parent.gameObject.name  == "wall")
         {
             if(trapQueue.Contains("Restart"))
