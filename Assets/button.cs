@@ -7,6 +7,8 @@ using TMPro;       // この２行を追加する．
 public class button : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI Button;
+    [SerializeField] private AudioSource button_sound;
+    [SerializeField] private AudioClip clip2;
     List<string> buttonQueue = new List<string>();
     List<float> buttonTimer = new List<float>();
     Transform wallTransform;
@@ -72,6 +74,7 @@ public class button : MonoBehaviour
                 buttonQueue.Add("Button1");
                 buttonTimer.Add(30);
             }
+            button_sound.PlayOneShot(clip2);
         }
     }
 }

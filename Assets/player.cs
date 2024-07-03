@@ -7,6 +7,8 @@ using TMPro;       // この２行を追加する．
 public class player : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI Trap;
+    [SerializeField] private AudioSource contact_sound;
+    [SerializeField] private AudioClip clip1;
     Transform myTransform;    // transform情報を格納する変数 
     Vector3 initial_position;     // 物体の初期位置を格納する変数
     //Vector3 initial_rotate;
@@ -94,7 +96,7 @@ public class player : MonoBehaviour
                 trapQueue.Add("Restart");
                 trapTimer.Add(1.5f);
             }
-            GetComponent<AudioSource>().Play();
+            contact_sound.PlayOneShot(clip1);
             this.transform.position = initial_position;
             //this.transform.Rotate(initial_rotate);
         }
