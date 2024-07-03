@@ -21,6 +21,6 @@ public class 上に動く壁 : MonoBehaviour
     }
 
     void FixedUpdate() {
-		rigid.MovePosition(new Vector3(defaultPos.x, defaultPos.y + Mathf.PingPong(Time.time, 2), defaultPos.z));
+		rigid.MovePosition(new Vector3(defaultPos.x, defaultPos.y + Mathf.PingPong(Time.time, 1), defaultPos.z));
 	}
 }
