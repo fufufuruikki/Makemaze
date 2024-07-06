@@ -1274,14 +1274,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Trap: {fileID: 112074314}
-<<<<<<< Updated upstream
-  Savepoint: {fileID: 415924943}
-  contact_sound: {fileID: 261126560}
-  clip1: {fileID: 8300000, guid: ace45f63bd4edd645b8a3c857ae93d54, type: 3}
-=======
+
   contact_sound: {fileID: 0}
   clip1: {fileID: 0}
->>>>>>> Stashed changes
+ Stashed changes
 --- !u!114 &261126558
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1295,13 +1291,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Button: {fileID: 484857185}
-<<<<<<< Updated upstream
   button_sound: {fileID: 261126561}
   clip2: {fileID: 8300000, guid: d2218aa0cacf89a47bcdf2e24c6ff269, type: 3}
-=======
   button_sound: {fileID: 0}
   clip2: {fileID: 0}
->>>>>>> Stashed changes
 --- !u!114 &261126559
 MonoBehaviour:
   m_ObjectHideFlags: 0
