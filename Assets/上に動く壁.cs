@@ -4,23 +4,41 @@ using UnityEngine;
 
 public class 上に動く壁 : MonoBehaviour
 {
-
-    private Rigidbody rigid;
-	private Vector3 defaultPos;
-    // Start is called before the first frame update
-    void Start()
+    Transform myTransform;    // transform情報を格納する変数 
+    Vector3 position_start;     // 物体の初期位置を格納する変数 
+    Vector3 position_now;       // 物体の現在位置を格納する変数
+    private int f_wall;
+ 
+    // Start is called before the first frame update 
+    void Start() 
+    { 
+        myTransform = this.transform;  // 物体のtransform情報をリンクする 
+        position_start = myTransform.position;  // 初期位置を取り出す 
+        position_now = position_start;  // 最初は同じ場所
+        f_wall = 0;
+    } 
+ 
+    // Update is called once per frame 
+    void Update() 
     {
-        rigid = GetComponent<Rigidbody>();
-		defaultPos = transform.position;
+        if (f_wall == 0)
+        {
+            position_now.y -= 0.05f;
+            if (position_start.y - position_now.y > 5)
+            {
+                f_wall = 1;
+                position_start = position_now;
+            }
+        }
+        else
+        {
+            position_now.y += 0.05f;
+            if (position_now.y - position_start.y > 5)
+            {
+                f_wall = 0;
+                position_start = position_now;
+            }
+        }
+        myTransform.position = position_now;
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    void FixedUpdate() {
-		rigid.MovePosition(new Vector3(defaultPos.x, defaultPos.y + Mathf.PingPong(Time.time, 1), defaultPos.z));
-	}
 }
