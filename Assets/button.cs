@@ -36,7 +36,7 @@ public class button : MonoBehaviour
                 buttonTimer.RemoveAt(i);
             }
         }
-        if(buttonQueue.Count == 1)
+        if(buttonQueue.Contains("Button1"))
         {
             if(angle == 90)
             {
@@ -72,6 +72,19 @@ public class button : MonoBehaviour
             else
             {
                 buttonQueue.Add("Button1");
+                buttonTimer.Add(30);
+            }
+            button_sound.PlayOneShot(clip2);
+        }
+        if(other.gameObject.name == "button2")
+        {
+            if(buttonQueue.Contains("Button2"))
+            {
+                buttonTimer[buttonQueue.IndexOf("Button2")] = 30;
+            }
+            else
+            {
+                buttonQueue.Add("Button2");
                 buttonTimer.Add(30);
             }
             button_sound.PlayOneShot(clip2);
