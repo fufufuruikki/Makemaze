@@ -11,8 +11,12 @@ public class timer : MonoBehaviour
     // private を public にしても操作可能になる． 
     [SerializeField] private TextMeshProUGUI TextTime;
     [SerializeField] private TextMeshProUGUI Messeage;
+    [SerializeField] private AudioSource goal_sound;
+    [SerializeField] private AudioSource finish_sound;
+    [SerializeField] private AudioClip clip1;
+    [SerializeField] private AudioClip clip2;
 
-    float time_limit = 2*60;
+    float time_limit = 4*60;
     int f_goal = 0;
     
     // Start is called before the first frame update 
@@ -27,6 +31,7 @@ public class timer : MonoBehaviour
         if(time_limit < 0)
         {
             Messeage.text = "Finish!";
+            finish_sound.PlayOneShot(clip2);
         }
         else
         {
@@ -47,6 +52,7 @@ public class timer : MonoBehaviour
             { 
                 f_goal = 1;  // 衝突フラグを上げる
                 Messeage.text = "Goal!";
+                goal_sound.PlayOneShot(clip1);
             }
         }
     }

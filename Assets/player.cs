@@ -9,7 +9,11 @@ public class player : MonoBehaviour
     [SerializeField] private TextMeshProUGUI Trap;
     [SerializeField] private TextMeshProUGUI Savepoint;
     [SerializeField] private AudioSource contact_sound;
+    [SerializeField] private AudioSource trap_sound;
+    [SerializeField] private AudioSource goaltrap_sound;
     [SerializeField] private AudioClip clip1;
+    [SerializeField] private AudioClip clip2;
+    [SerializeField] private AudioClip clip3;
     Vector3 initial_position;     // 物体の初期位置を格納する変数
     //Vector3 initial_rotate;
     Vector3 savepoint_position;
@@ -161,6 +165,21 @@ public class player : MonoBehaviour
                     trapTimer.Add(10);
                 }
             }
-        } 
+            trap_sound.PlayOneShot(clip2);
+            
+        }
+        if(other.transform.parent.gameObject.name == "goaltrap")
+        {
+            if(trapQueue.Contains("GoalTrap"))
+            {
+                trapTimer[trapQueue.IndexOf("GoalTrap")] += 1.5f;
+            }
+            else
+            {
+                trapQueue.Add("GoalTrap");
+                trapTimer.Add(1.5f);
+            }
+            goaltrap_sound.PlayOneShot(clip3);
+        }
     } 
 }

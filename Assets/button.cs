@@ -161,5 +161,12 @@ public class button : MonoBehaviour
             }
             button_sound.PlayOneShot(clip2);
         }
+        if(other.transform.parent.gameObject.name == "wall")
+        {
+            if(buttonQueue.Contains("Button1"))
+            {
+                buttonTimer[buttonQueue.IndexOf("Button1")] = 0.1f;
+            }
+        }
     }
 }
