@@ -12,6 +12,7 @@ public class player : MonoBehaviour
     [SerializeField] private AudioClip clip1;
     Vector3 initial_position;     // 物体の初期位置を格納する変数
     //Vector3 initial_rotate;
+    Vector3 savepoint_position;
     List<string> trapQueue = new List<string>();
     List<float> trapTimer = new List<float>();
     float velocity;
@@ -22,6 +23,7 @@ public class player : MonoBehaviour
         Application.targetFrameRate = 60;   // ← FPSを60に設定
         initial_position = this.transform.position;  // 初期位置を取り出す
         //initial_rotate = new Vector3(0,2,0);
+        savepoint_position = new Vector3(0, 1, 50);
         velocity = 0.1f;
     } 
  
@@ -86,8 +88,9 @@ public class player : MonoBehaviour
     {
         if(other.gameObject.name == "savepoint")
         {
-            initial_position = this.transform.position;
-            Savepoint.text = ""; //未解決
+            initial_position = savepoint_position;
+            this.transform.position = savepoint_position;
+            Savepoint.text = "SavePoint"; //未解決
         }
         if (other.transform.parent.gameObject.name  == "wall")
         {
