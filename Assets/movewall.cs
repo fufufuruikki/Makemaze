@@ -23,8 +23,8 @@ public class movewall : MonoBehaviour
     {
         if (f_wall == 0)
         {
-            position_now.z -= 0.05f;
-            if (position_start.z - position_now.z > 4)
+            position_now.z += 0.05f;
+            if (position_now.z - position_start.z > 4)
             {
                 f_wall = 1;
                 position_start = position_now;
@@ -32,8 +32,8 @@ public class movewall : MonoBehaviour
         }
         else
         {
-            position_now.z += 0.05f;
-            if (position_now.z - position_start.z > 4)
+            position_now.z -= 0.05f;
+            if (position_start.z - position_now.z > 4)
             {
                 f_wall = 0;
                 position_start = position_now;
