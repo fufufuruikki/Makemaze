@@ -7,7 +7,8 @@ using TMPro;       // この２行を追加する．
 public class player : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI Trap;
-    [SerializeField] private TextMeshProUGUI Savepoint;
+    [SerializeField] private TextMeshProUGUI Savepoint_Sidemsg;
+    [SerializeField] private TextMeshProUGUI Savepoint_Frontmsg;
     [SerializeField] private AudioSource contact_sound;
     [SerializeField] private AudioSource trap_sound;
     [SerializeField] private AudioSource goaltrap_sound;
@@ -20,6 +21,8 @@ public class player : MonoBehaviour
     List<string> trapQueue = new List<string>();
     List<float> trapTimer = new List<float>();
     float velocity;
+    float savepoint_msg_timer;
+    int savepoint_msg_f;
 
     // Start is called before the first frame update 
     void Start()
@@ -29,11 +32,23 @@ public class player : MonoBehaviour
         //initial_rotate = new Vector3(0,2,0);
         savepoint_position = new Vector3(0, 1, 50);
         velocity = 0.1f;
+        savepoint_msg_timer = 3.0f;
+        savepoint_msg_f = 0;
     } 
  
     // Update is called once per frame 
     void Update() 
     {
+        if(savepoint_msg_f == 1)
+        {
+            savepoint_msg_timer -= Time.deltaTime;
+            if((int)savepoint_msg_timer < 0)
+            {
+                Savepoint_Frontmsg.text = "";
+                savepoint_msg_f = 0;
+            }
+        }
+
         if (trapQueue.Contains("Stop"))
         {
 
@@ -94,7 +109,9 @@ public class player : MonoBehaviour
         {
             initial_position = savepoint_position;
             this.transform.position = savepoint_position;
-            Savepoint.text = "SavePoint"; //未解決
+            Savepoint_Sidemsg.text = "SavePoint";
+            Savepoint_Frontmsg.text = "SavePoint";
+            savepoint_msg_f = 1;
         }
         if (other.transform.parent.gameObject.name  == "wall")
         {
@@ -172,12 +189,12 @@ public class player : MonoBehaviour
         {
             if(trapQueue.Contains("GoalTrap"))
             {
-                trapTimer[trapQueue.IndexOf("GoalTrap")] += 1.5f;
+                trapTimer[trapQueue.IndexOf("GoalTrap")] += 2f;
             }
             else
             {
                 trapQueue.Add("GoalTrap");
-                trapTimer.Add(1.5f);
+                trapTimer.Add(2f);
             }
             goaltrap_sound.PlayOneShot(clip3);
         }

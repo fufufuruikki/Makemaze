@@ -167,6 +167,14 @@ public class button : MonoBehaviour
             {
                 buttonTimer[buttonQueue.IndexOf("Button1")] = 0.1f;
             }
+            if(buttonQueue.Contains("Button2"))
+            {
+                buttonTimer[buttonQueue.IndexOf("Button2")] = 0.1f;
+            }
+            if(buttonQueue.Contains("Button3"))
+            {
+                buttonTimer[buttonQueue.IndexOf("Button3")] = 0.1f;
+            }
         }
     }
 }
