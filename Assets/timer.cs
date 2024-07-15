@@ -51,7 +51,7 @@ public class timer : MonoBehaviour
             if (other.gameObject.name == "goal")  // 衝突した物体が「ゴール」なら（※） 
             { 
                 f_goal = 1;  // 衝突フラグを上げる
-                Messeage.text = "Goal!";
+                Messeage.text = "GOAL!!!";
                 goal_sound.PlayOneShot(clip1);
             }
         }
